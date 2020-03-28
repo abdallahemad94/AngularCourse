@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularCourse';
+  View: string = "Recipes";
+
+  ChangeView(newView: string) {
+    this.View = newView;
+  }
 }

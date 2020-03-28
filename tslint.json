@@ -12,13 +12,11 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
       "kebab-case"
     ],
     "import-blacklist": [
@@ -68,8 +66,8 @@
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "quotemark": [
-      true,
-      "single"
+      false,
+      "double"
     ],
     "trailing-comma": false,
     "no-conflicting-lifecycle": true,
