@@ -1,7 +1,7 @@
-import { Component, ElementRef, Output, EventEmitter, ViewChild } from '@angular/core';
-import { FormControl } from "@angular/forms";
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 import { Ingredient } from 'src/models/Ingredient.model';
+import { ShoppingListService } from 'src/services/shopping-list.service';
 
 @Component({
     selector: 'app-shopping-list-edit',
@@ -11,18 +11,15 @@ import { Ingredient } from 'src/models/Ingredient.model';
 export class ShoppingListEditComponent {
     @ViewChild("nameInput") nameInput: ElementRef;
     @ViewChild("amountInput") amountInput: ElementRef;
-    @Output() IngredientAdded: EventEmitter<Ingredient>;
 
-    constructor() {
-        this.IngredientAdded = new EventEmitter<Ingredient>();
-     }
+    constructor(private shoppingListService: ShoppingListService) {}
 
     addIngrediant() {
         let ingredient = new Ingredient (
             this.nameInput.nativeElement.value,
-            this.amountInput.nativeElement.value);
-
-        this.IngredientAdded.emit(ingredient);
+            this.amountInput.nativeElement.value
+            );
+        this.shoppingListService.addIngeredient(ingredient);
         return false;
     }
 }

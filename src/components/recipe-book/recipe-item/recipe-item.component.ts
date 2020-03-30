@@ -1,5 +1,6 @@
-import { Component, Input, HostBinding, Output, EventEmitter } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 import {Recipe} from 'src/models/Recipe.model';
+import { RecipeService } from "src/services/recipe.service";
 
 @Component({
     selector: 'app-recipe-item',
@@ -7,13 +8,11 @@ import {Recipe} from 'src/models/Recipe.model';
     styleUrls: ['./recipe-item.component.css']
 })
 export class RecipeItemComponent {
+    @HostBinding("style.margin") margin = ".25px"
     @Input() recipe: Recipe;
-    @Output() viewRecipeDetail: EventEmitter<Recipe>;
-    constructor() {
-        this.viewRecipeDetail = new EventEmitter<Recipe>();
-    }
+    constructor(private recipeService: RecipeService) {}
 
-    RecipeDetail() {
-        this.viewRecipeDetail.emit(this.recipe);
+    onRecipeClicked() {
+        this.recipeService.recipeSelected.emit(this.recipe);
     }
 }
