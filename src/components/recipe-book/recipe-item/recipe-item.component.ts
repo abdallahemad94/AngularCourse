@@ -1,18 +1,16 @@
-import { Component, Input, HostBinding } from '@angular/core';
-import {Recipe} from 'src/models/Recipe.model';
+import { Component, Input, HostBinding } from "@angular/core";
+import { Recipe } from "src/models/Recipe.model";
 import { RecipeService } from "src/services/recipe.service";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
-    selector: 'app-recipe-item',
-    templateUrl: './recipe-item.component.html',
-    styleUrls: ['./recipe-item.component.css']
+  selector: "app-recipe-item",
+  templateUrl: "./recipe-item.component.html",
+  styleUrls: ["./recipe-item.component.css"]
 })
 export class RecipeItemComponent {
-    @HostBinding("style.margin") margin = ".25px"
-    @Input() recipe: Recipe;
-    constructor(private recipeService: RecipeService) {}
+  @Input() recipe: Recipe;
+  @Input() index: number;
 
-    onRecipeClicked() {
-        this.recipeService.recipeSelected.emit(this.recipe);
-    }
+  constructor(private router: Router, private route: ActivatedRoute) {}
 }
